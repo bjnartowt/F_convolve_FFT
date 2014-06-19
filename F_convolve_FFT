@@ -1,0 +1,31 @@
+function convD=F_convolve_FFT_v50(f,g)
+
+N=length(f);
+
+if(mod(N,2)==0) dNm=N/2; elseif(mod(N,2)==1) dNm=(N-1)/2; end
+
+p=zeros(1,N); fp = [f p]; gp = [g p]; EN=length(fp);
+c1 = ifft(fft(fp).*fft(gp));
+ 
+ for id=1:N
+    con(id)=c1(id+dNm);
+ end
+
+convD=real(con); return
+
+end
+
+% earlier version 1.1
+
+% function convD=F_convolve_FFT_v20(f,g)
+% 
+% N=length(f); n=log2(N); dNm=N-2^(n-1); p=zeros(1,N); fp = [f p]; gp = [g p]; EN=length(fp);
+% c1 = ifft(fft(fp).*fft(gp));
+%  
+%  for id=1:N
+%     con(id)=c1(id+dNm);
+%  end
+% 
+% convD=con; return
+% 
+% end
