@@ -11,7 +11,7 @@ c1 = ifft(fft(fp).*fft(gp));
     con(id)=c1(id+dNm);
  end
 
-convD=real(con); return
+convD=con; return
 
 end
 
